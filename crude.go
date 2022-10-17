@@ -1,7 +1,9 @@
 package main
 
 import (
+	"embed"
 	"fmt"
+	"html/template"
 	"io/ioutil"
 	"log"
 	"net/http"
@@ -31,6 +33,12 @@ SampleRate = 1
 
 var tracer = otel.Tracer("crude")
 
+//go:embed templates/*
+var embeddedTemplates embed.FS
+
+//go:embed images/*
+var embeddedAssets embed.FS
+
 func main() {
 	// use honeycomb distro to setup OpenTelemetry SDK
 	otelShutdown, err := launcher.ConfigureOpenTelemetry()
@@ -40,9 +48,14 @@ func main() {
 	defer otelShutdown()
 
 	router := gin.Default()
+
+	// embed all the templates into the binary
+	// thx https://github.com/gin-gonic/examples/blob/master/assets-in-binary/example02/main.go
+	templ := template.Must(template.New("").ParseFS(embeddedTemplates, "templates/*.tmpl"))
+	router.SetHTMLTemplate(templ)
+	router.StaticFS("/assets", http.FS(embeddedAssets))
+
 	router.Use(otelgin.Middleware("crude"))
-	router.Static("/assets", "./assets")
-	router.LoadHTMLGlob("templates/*")
 	router.Use(sessions.Sessions("crudesession", cookie.NewStore([]byte("BoxContainsLiveB33s!"))))
 
 	router.GET("/", homePage)
