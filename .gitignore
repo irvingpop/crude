@@ -1,0 +1,7 @@
+.envrc
+node_modules
+yarn.lock
+yarn-error.log
+.vscode/symbols.json
+.DS_Store
+crude
