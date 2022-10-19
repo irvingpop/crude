@@ -11,7 +11,7 @@ require (
 	github.com/honeycombio/honeycomb-opentelemetry-go v0.2.0
 	github.com/honeycombio/opentelemetry-go-contrib/launcher v0.0.0-20220824095536-e0b3dd3fbfe7
 	github.com/honeycombio/refinery v1.18.0
-	github.com/pelletier/go-toml v1.9.5
+	github.com/pelletier/go-toml/v2 v2.0.5
 	go.opentelemetry.io/contrib/instrumentation/github.com/gin-gonic/gin/otelgin v0.36.3
 	go.opentelemetry.io/otel v1.11.0
 	go.opentelemetry.io/otel/trace v1.11.0
@@ -63,7 +63,7 @@ require (
 	github.com/mitchellh/mapstructure v1.5.0 // indirect
 	github.com/modern-go/concurrent v0.0.0-20180306012644-bacd9c7ef1dd // indirect
 	github.com/modern-go/reflect2 v1.0.2 // indirect
-	github.com/pelletier/go-toml/v2 v2.0.5 // indirect
+	github.com/pelletier/go-toml v1.9.5 // indirect
 	github.com/power-devops/perfstat v0.0.0-20210106213030-5aafc221ea8c // indirect
 	github.com/sethvargo/go-envconfig v0.6.2 // indirect
 	github.com/shirou/gopsutil/v3 v3.22.6 // indirect

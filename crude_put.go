@@ -49,7 +49,7 @@ func rulesReceiver(c *gin.Context) {
 		c.Redirect(http.StatusFound, "/")
 	}
 
-	session.AddFlash("Rules saved successfully", "Success")
+	session.AddFlash("Rules validated and saved successfully", "Success")
 	session.Save()
 	c.Redirect(http.StatusFound, "/")
 }

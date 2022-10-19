@@ -5,7 +5,7 @@ import (
 	"os"
 
 	"github.com/gin-gonic/gin"
-	"github.com/pelletier/go-toml"
+	"github.com/pelletier/go-toml/v2"
 
 	refineryconfig "github.com/honeycombio/refinery/config"
 
@@ -46,8 +46,13 @@ func validateRules(c *gin.Context, rulesContent string) error {
 	}
 
 	allrules, _ := config.GetAllSamplerRules()
+	// for index, rule := range allrules {
+	// 	ruletoml, _ := toml.Marshal(rule)
+	// 	log.Printf("rule:\n%s: (%s)\n %s\n", index, reflect.TypeOf(rule), ruletoml)
+	// }
+
 	tomlrules, _ := toml.Marshal(allrules)
-	log.Printf("All rules:\n%s\n", tomlrules)
+	log.Printf("ALL RULES: --------- \n%s\n", tomlrules)
 
 	return err
 }
