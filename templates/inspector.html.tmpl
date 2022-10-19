@@ -1,0 +1,55 @@
+{{template "base-top" .}}
+
+    <!-- [ Main Content ] start -->
+        <main>
+          <div class="mx-auto max-w-7xl py-6 sm:px-6 lg:px-8">
+            <!-- The Alerts area -->
+            {{template "alerts" .}}
+
+            <!-- End Alerts area -->
+
+            <!-- The Rules file inspector textarea -->
+            <div class="mb-4 w-full h-full columns-2 bg-gray-50 rounded-lg border border-gray-200 dark:bg-gray-700 dark:border-gray-600">
+                <div class="header">Original Rules</div>
+                <div class="py-2 px-4 w-full bg-white rounded-b-lg dark:bg-gray-800">
+                    <label for="editor" class="sr-only">Rules</label>
+                    <textarea name="rules_content" id="editor" rows="30" class="block font-mono px-0 w-full text-sm text-gray-800 bg-white border-0 dark:bg-gray-800 focus:ring-0 dark:text-white dark:placeholder-gray-400">{{.rules_content}}</textarea>
+                </div>
+
+                <div class="tree json-container overflow-y-auto py-0 px-4 w-full bg-white rounded-b-lg dark:bg-gray-800">
+                  Parsed Rules
+                
+                  <!-- <label for="parsed_rules" class="sr-only">Parsed Rules</label> -->
+                  <!-- <textarea name="parsed_rules" id="parsed" rows="30" class="block font-mono px-0 w-full text-sm text-gray-800 bg-white border-0 dark:bg-gray-800 focus:ring-0 dark:text-white dark:placeholder-gray-400">{{.parsed_rules}}</textarea> -->
+                </div>
+            </div>
+
+            <!-- /End Rules file editor -->
+          </div>
+        </main>
+      </div>
+
+
+    <!-- [ Main Content ] end -->
+
+<!-- Specific Page JS goes HERE  -->
+<!-- thanks to https://github.com/pgrabovets/json-view -->
+<script src="/assets/js/jsonview.js"></script>
+<script>
+  // get json data
+  const data = '{{.parsed_rules}}';
+
+  // create json tree object
+  const tree = jsonview.create(data);
+
+  // render tree into dom element
+  jsonview.render(tree, document.querySelector('.tree'));
+
+  // expand the tree
+  jsonview.expand(tree);
+</script>
+
+
+{{template "scripts" .}}
+
+{{template "base-bottom" .}}

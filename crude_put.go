@@ -33,7 +33,7 @@ func rulesReceiver(c *gin.Context) {
 		c.Redirect(http.StatusFound, "/")
 	}
 
-	err = validateRules(c, rulesContent)
+	_, err = validateRules(c, rulesContent)
 	if err != nil {
 		span.SetAttributes(attribute.String("error", err.Error()))
 		session.AddFlash(fmt.Sprintf("Unable to validate the rules file: %s", err), "Error")

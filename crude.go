@@ -27,7 +27,7 @@ var tracer = otel.Tracer("crude")
 //go:embed templates/*
 var embeddedTemplates embed.FS
 
-//go:embed images/*
+//go:embed images/* js/*
 var embeddedAssets embed.FS
 
 func main() {
@@ -50,6 +50,7 @@ func main() {
 	router.Use(sessions.Sessions("crudesession", cookie.NewStore([]byte("BoxContainsLiveB33s!"))))
 
 	router.GET("/", homePage)
+	router.GET("/inspector", rulesInspector)
 	router.POST("/", rulesReceiver)
 
 	router.Use(gin.CustomRecovery(func(c *gin.Context, recovered interface{}) {

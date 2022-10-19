@@ -42,6 +42,7 @@ func homePage(c *gin.Context) {
 		"rules_content": rulesContent,
 		"MsgSuccess":    success_flashes,
 		"MsgError":      error_flashes,
+		"title":         "Deploy a Rules File",
 	})
 }
 
