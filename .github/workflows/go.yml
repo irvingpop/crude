@@ -1,4 +1,4 @@
-name: Go
+name: Build
 
 on:
   push:
@@ -12,6 +12,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
+
+    - uses: actions/cache@v3
+      with:
+        path: |
+          ~/.cache/go-build
+          ~/go/pkg/mod
+        key: ${{ runner.os }}-go-${{ hashFiles('**/go.sum') }}
+        restore-keys: |
+          ${{ runner.os }}-go-
 
     - name: Set up Go
       uses: actions/setup-go@v3
@@ -32,18 +41,18 @@ jobs:
 #         tag_name: ${{ github.event.inputs.tag }}
 #         draft: false
 #         prerelease: false
-    
+
 #     - name: Upload binaries to release
 #       uses: alexellis/upload-assets@0.2.2
 #       env:
 #         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 #       with:
 #         asset_paths: '["./bin/crude*"]'
-        
+
     - name: Upload a Build Artifact
       uses: actions/upload-artifact@v3.1.0
       with:
         # Artifact name
         name: crude
         path: bin/*
-        
+
