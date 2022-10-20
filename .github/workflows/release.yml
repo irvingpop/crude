@@ -23,10 +23,6 @@ jobs:
         with:
           path: bin
 
-      - name: Display structure of downloaded files
-        run: ls -R
-        working-directory: bin
-
       - name: Run GoReleaser
         uses: goreleaser/goreleaser-action@v3
         with:
