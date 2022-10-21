@@ -73,7 +73,7 @@ func getRulesFromS3(c *gin.Context) (string, error) {
 
 	client := s3.NewFromConfig(cfg)
 	result, err := client.GetObject(c, &s3.GetObjectInput{
-		Bucket: aws.String("irving-fafo"),
+		Bucket: aws.String(getS3Bucket()),
 		Key:    aws.String("rules.txt"),
 	})
 

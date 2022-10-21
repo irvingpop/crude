@@ -24,9 +24,8 @@ func rulesInspector(c *gin.Context) {
 		}
 	}
 
-	// parsedRules, err := validateRules(c, rulesContent)
-
-	parsedRules, err := rulesToJSON(c, rulesContent)
+	// parsedRules, err := rulesToJSON(c, rulesContent)
+	parsedRules, err := validateRules(c, rulesContent)
 	if err != nil {
 		parsedRules = fmt.Sprintf("%s: %s", parsedRules, err.Error())
 	}

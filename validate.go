@@ -49,10 +49,6 @@ func validateRules(c *gin.Context, rulesContent string) (string, error) {
 	}
 
 	allrules, _ := config.GetAllSamplerRules()
-	// for index, rule := range allrules {
-	// 	ruletoml, _ := toml.Marshal(rule)
-	// 	log.Printf("rule:\n%s: (%s)\n %s\n", index, reflect.TypeOf(rule), ruletoml)
-	// }
 
 	buf := bytes.Buffer{}
 	enc := toml.NewEncoder(&buf)
@@ -61,7 +57,7 @@ func validateRules(c *gin.Context, rulesContent string) (string, error) {
 
 	// TOMLv2 only returns single quotes but all our docs use double quotes, so standardize
 	rulesReplacedQuotes := string(bytes.ReplaceAll(buf.Bytes(), []byte(`'`), []byte(`"`)))
-	log.Printf("ALL RULES: --------- \n%s\n", string(buf.Bytes()))
+	// log.Printf("ALL RULES: --------- \n%s\n", string(buf.Bytes()))
 
 	return rulesReplacedQuotes, err
 }

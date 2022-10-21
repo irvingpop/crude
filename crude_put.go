@@ -80,7 +80,7 @@ func writeRulesToS3(c *gin.Context, rulesContent string) error {
 
 	client := s3.NewFromConfig(cfg)
 	_, err = client.PutObject(c, &s3.PutObjectInput{
-		Bucket: aws.String("irving-fafo"),
+		Bucket: aws.String(getS3Bucket()),
 		Key:    aws.String("rules.txt"),
 		Body:   strings.NewReader(rulesContent),
 	})

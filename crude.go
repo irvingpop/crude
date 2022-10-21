@@ -70,3 +70,12 @@ func main() {
 		router.Run(":8000")
 	}
 }
+
+// expecting just the name of the S3 Bucket
+func getS3Bucket() string {
+	bucket := os.Getenv("S3_BUCKET")
+	if bucket == "" {
+		bucket = "irving-fafo"
+	}
+	return bucket
+}
