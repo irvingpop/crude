@@ -30,10 +30,9 @@ func rulesInspector(c *gin.Context) {
 		parsedRules = fmt.Sprintf("%s: %s", parsedRules, err.Error())
 	}
 
-
 	otelgin.HTML(c, http.StatusOK, "inspector.html.tmpl", gin.H{
 		"rules_content": rulesContent,
 		"parsed_rules":  parsedRules,
-		"title":        "Analyze the deployed Rules File",
+		"title":         "Analyze the deployed Rules File",
 	})
 }

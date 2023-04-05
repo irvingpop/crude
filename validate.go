@@ -93,4 +93,3 @@ func rulesToJSON(c *gin.Context, rulesContent string) (string, error) {
 
 	return string(rulesJSON), err
 }
-

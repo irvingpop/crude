@@ -12,7 +12,7 @@ import (
 	"github.com/gin-gonic/gin"
 
 	_ "github.com/honeycombio/honeycomb-opentelemetry-go"
-	"github.com/honeycombio/opentelemetry-go-contrib/launcher"
+	"github.com/honeycombio/otel-launcher-go/launcher"
 	"go.opentelemetry.io/contrib/instrumentation/github.com/gin-gonic/gin/otelgin"
 	"go.opentelemetry.io/otel"
 )
